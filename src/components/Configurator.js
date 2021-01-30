@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useMemo, useContext } from 'react'
 
-import DemoContext from '../context/DemoContext'
+import { ConfigContext, DataContext } from '../context/DemoContext'
 
 import './component.css'
 
@@ -30,29 +30,32 @@ const datasets = {
 }
 
 const Configurator = (props) => {
-  const { setColumnDefs, setData, setFontHeight } = useContext(DemoContext)
+  const { setColumnDefs, setFontHeight } = useContext(ConfigContext)
+  const { setData } = useContext(DataContext)
+
   const [columnChoice, setColumnChoice] = useState('A')
   const [dataset, setDataset] = useState('A')
   const [fontChoice, setFontChoice] = useState(10)
 
-  const changeColumnChoice = (event) => {
-    setColumnChoice(event.target.value)
-    setColumnDefs(columnDefChoices[event.target.value])
-  } 
 
-  const changeDataset = (event) => {
-    setDataset(event.target.value)
-    setData(datasets[event.target.value])
-  }
+  return useMemo(() => {
+    const changeColumnChoice = (event) => {
+      setColumnChoice(event.target.value)
+      setColumnDefs(columnDefChoices[event.target.value])
+    } 
+  
+    const changeDataset = (event) => {
+      setDataset(event.target.value)
+      setData(datasets[event.target.value])
+    }
+  
+    const changeFontHeight = (event) => {
+      const value = parseInt(event.target.value)
+      setFontChoice(value)
+      setFontHeight(value)
+    }
 
-  const changeFontHeight = (event) => {
-    const val = parseInt(event.target.value)
-    setFontChoice(val)
-    setFontHeight(val)
-  }
-
-  return (
-    <>
+    return <>
       { console.log(Date.now(), 'Configurator()') }
       <div className="demo-component">
         <h3>Configurator</h3>
@@ -83,7 +86,7 @@ const Configurator = (props) => {
 
       </div>
     </>
-  );
+  }, [columnChoice, dataset, fontChoice, setColumnDefs, setData, setFontHeight])
 }
 
 export default Configurator

@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.App .flex-row { 
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-evenly;
+
+  border-bottom: 1px solid #555;
+  border-color: #555;
+}

@@ -1,15 +1,19 @@
 import React from 'react'
 
-const DemoContext = React.createContext({ 
-    columnDefs: [],
+const DataContext = React.createContext({ 
     data: [],
     counter: 0,
+
+    setData: () => {},
+    incrementCounter: () => {},
+})
+
+const ConfigContext = React.createContext({ 
+    columnDefs: [],
     fontHeight: 12,
 
     setColumnDefs: () => {},
-    setData: () => {},
-    incrementCounter: () => {},
     setFontHeight: () => {},
 })
 
-export default DemoContext
+export { DataContext, ConfigContext }

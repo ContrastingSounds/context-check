@@ -1,20 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useMemo, useContext } from 'react'
 
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import DemoContext from '../context/DemoContext'
+import { ConfigContext, DataContext } from '../context/DemoContext'
 
 const DataTable = (props) => {
-    const { columnDefs, data } = useContext(DemoContext)
+    const { columnDefs } = useContext(ConfigContext)
+    const { data } = useContext(DataContext)
 
-    return (
-      <>
+    return useMemo(() => {
+      return <>
         { console.log(Date.now(), 'DataTable()') }
         <div className="demo-component">
           <h3>DataTable</h3>
-          <div className="ag-theme-alpine" style={{ height: 200, width: 600 }}>
+          <div className="ag-theme-alpine" style={{ height: 135, width: 600 }}>
             <AgGridReact 
               columnDefs={columnDefs}
               rowData={data}
@@ -22,7 +23,7 @@ const DataTable = (props) => {
           </div>
         </div>
       </>
-    );
+    }, [columnDefs, data])
   }
 
 export default DataTable

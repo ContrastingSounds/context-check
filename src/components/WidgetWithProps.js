@@ -1,9 +1,9 @@
 import React from 'react'
 
-const InteractiveWidget = React.memo(
+const WidgetWithProps = React.memo(
   ({ value, updater }) => {
     return <>
-      { console.log(Date.now(), 'InteractiveWidget()') }
+      { console.log(Date.now(), 'WidgetWithProps()') }
       <div className="demo-component">
         <p>You clicked {value} times</p>
         <button onClick={updater}>
@@ -14,4 +14,4 @@ const InteractiveWidget = React.memo(
   }, (prevProps, nextProps) => prevProps.value === nextProps.value ? true : false
 )
 
-export default InteractiveWidget
+export default WidgetWithProps
