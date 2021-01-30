@@ -4,6 +4,20 @@ import DemoContext from '../context/DemoContext'
 
 import './component.css'
 
+const columnDefChoices = {
+  A: [
+    {headerName: 'Make', field: 'make'},
+    {headerName: 'Model', field: 'model'},
+    {headerName: 'Price', field: 'price'}
+  ],
+
+  B: [
+    {headerName: 'Make (edit)', field: 'make', editable: true},
+    {headerName: 'Model (edit)', field: 'model', editable: true},
+    {headerName: 'Price (edit)', field: 'price', editable: true}
+  ]
+}
+
 const datasets = {
   A: [
     { make: "Ford", model: "Mondeo", price: 32000 },
@@ -16,10 +30,16 @@ const datasets = {
 }
 
 const Configurator = (props) => {
-  const { setData, setFontHeight } = useContext(DemoContext)
+  const { setColumnDefs, setData, setFontHeight } = useContext(DemoContext)
+  const [columnChoice, setColumnChoice] = useState('A')
   const [dataset, setDataset] = useState('A')
   const [fontChoice, setFontChoice] = useState(10)
-  
+
+  const changeColumnChoice = (event) => {
+    setColumnChoice(event.target.value)
+    setColumnDefs(columnDefChoices[event.target.value])
+  } 
+
   const changeDataset = (event) => {
     setDataset(event.target.value)
     setData(datasets[event.target.value])
@@ -36,6 +56,14 @@ const Configurator = (props) => {
       { console.log(Date.now(), 'Configurator()') }
       <div className="demo-component">
         <h3>Configurator</h3>
+
+        <label>
+          Pick your column settings:
+          <select value={columnChoice} onChange={changeColumnChoice}>
+            <option value="A">Read Only</option>
+            <option value="B">Editable</option>
+          </select>
+        </label>
 
         <label>
           Pick your dataset:
