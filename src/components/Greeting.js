@@ -2,8 +2,8 @@ import React from 'react'
 
 import './component.css'
 
-const Greeting = (props) => {
-  
+const Greeting = React.memo(
+  (props) => {  
     return (
       <>
         { console.log(Date.now(), 'Greeting()') }
@@ -16,5 +16,6 @@ const Greeting = (props) => {
       </>
     );
   }
+)
 
 export default Greeting
