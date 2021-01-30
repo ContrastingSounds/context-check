@@ -8,7 +8,7 @@ const Status = (props) => {
     return (
       <>
         { console.log(Date.now(), 'Status()') }
-        <div className="demo-component">
+        <div className="demo-component" style={{ fontSize: context.fontHeight }}>
           <h3>Status</h3>
           <div>Clicks: {context.counter}</div>
           <hr></hr>

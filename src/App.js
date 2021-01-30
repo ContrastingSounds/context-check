@@ -12,16 +12,16 @@ import DemoContext from './context/DemoContext'
 
 const initialState = {
   columnDefs: [
-    {headerName: 'Make', field: 'make'},
-    {headerName: 'Model', field: 'model'},
-    {headerName: 'Price', field: 'price', editable: true}
+    { headerName: 'Make', field: 'make' },
+    { headerName: 'Model', field: 'model' },
+    { headerName: 'Price', field: 'price', editable: true }
   ],
   data: [
       { make: "Toyota", model: "Celica", price: 35000 },
       { make: "Ford", model: "Mondeo", price: 32000 },
   ],
   counter: 0,
-  fontHeight: 10
+  fontHeight: 16
 }
 
 function App() {

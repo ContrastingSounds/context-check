@@ -76,8 +76,8 @@ const Configurator = (props) => {
         <label>
           Pick your font height:
           <select value={fontChoice} onChange={changeFontHeight}>
-            <option value="10">10</option>
-            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="28">28</option>
           </select>
         </label>
 
