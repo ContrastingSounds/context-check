@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext } from 'react'
 
-import { ConfigContext, DataContext } from '../context/DemoContext'
+import { actions, ConfigContext, DataContext } from '../context/DemoContexts'
 
 import './component.css'
 
@@ -30,8 +30,8 @@ const datasets = {
 }
 
 const Configurator = (props) => {
-  const { setColumnDefs, setFontHeight } = useContext(ConfigContext)
-  const { setData } = useContext(DataContext)
+  const [configContext, dispatchConfig] = useContext(ConfigContext)
+  const [dataContext, dispatchData] = useContext(DataContext)
 
   const [columnChoice, setColumnChoice] = useState('A')
   const [dataset, setDataset] = useState('A')
@@ -41,18 +41,27 @@ const Configurator = (props) => {
   return useMemo(() => {
     const changeColumnChoice = (event) => {
       setColumnChoice(event.target.value)
-      setColumnDefs(columnDefChoices[event.target.value])
+      dispatchConfig({
+        type: actions.UPDATE_COLUMNS,
+        payload: columnDefChoices[event.target.value],
+      })
     } 
   
     const changeDataset = (event) => {
       setDataset(event.target.value)
-      setData(datasets[event.target.value])
+      dispatchData({
+        type: actions.UPDATE_DATA,
+        payload: datasets[event.target.value]
+      })
     }
   
     const changeFontHeight = (event) => {
       const value = parseInt(event.target.value)
       setFontChoice(value)
-      setFontHeight(value)
+      dispatchConfig({
+        type: actions.UPDATE_FONT,
+        payload: value
+      })
     }
 
     return <>
@@ -86,7 +95,7 @@ const Configurator = (props) => {
 
       </div>
     </>
-  }, [columnChoice, dataset, fontChoice, setColumnDefs, setData, setFontHeight])
+  }, [columnChoice, dataset, fontChoice, dispatchConfig, dispatchData])
 }
 
 export default Configurator

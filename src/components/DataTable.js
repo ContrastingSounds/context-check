@@ -4,11 +4,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-import { ConfigContext, DataContext } from '../context/DemoContext'
+import { ConfigContext, DataContext } from '../context/DemoContexts'
 
 const DataTable = (props) => {
-    const { columnDefs } = useContext(ConfigContext)
-    const { data } = useContext(DataContext)
+  const [{ columnDefs }] = useContext(ConfigContext)
+  const [{ data }] = useContext(DataContext)
 
     return useMemo(() => {
       return <>

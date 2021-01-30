@@ -1,22 +1,26 @@
 import React, { useMemo, useContext } from 'react'
 
-import { DataContext } from '../context/DemoContext'
+import { actions, DataContext } from '../context/DemoContexts'
 
-const WidgetWithContext = (props) => {
-  const { counter, incrementCounter } = useContext(DataContext)
+const WidgetWithProps = (props) => {
+  const [dataState, dispatchData] = useContext(DataContext)
 
   return useMemo(() => {
+
+    const handleClick = () => {
+      dispatchData({ type: actions.INCREMENT_COUNTER })
+    }
+
     return <>
       { console.log(Date.now(), 'WidgetWithContext()') }
       <div className="demo-component">
-        <p>You clicked {counter} times</p>
-        <button onClick={incrementCounter}>
+        <p>You clicked {dataState.counter} times</p>
+        <button onClick={handleClick}>
           Click me
         </button>
       </div>
     </>
-  }, [counter, incrementCounter])
+  }, [dataState.counter, dispatchData])
 }
 
-
-export default WidgetWithContext
+export default WidgetWithProps
