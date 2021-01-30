@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+
+import DemoContext from '../context/DemoContext'
 
 const InteractiveWidget = (props) => {
-
-    const [count, setCount] = useState(0);
+    const context = useContext(DemoContext)
   
     return (
-      <div className="demo-component">
-        <p>You clicked {count} times</p>
-        <button onClick={() => setCount(count + 1)}>
-          Click me
-        </button>
-      </div>
+      <>
+        { console.log(Date.now(), 'InteractiveWidget()') }
+        <div className="demo-component">
+          <p>You clicked {context.counter} times</p>
+          <button onClick={context.incrementCounter}>
+            Click me
+          </button>
+        </div>
+      </>
     );
   }
 

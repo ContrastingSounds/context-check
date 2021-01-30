@@ -5,9 +5,15 @@ import './component.css'
 const Greeting = (props) => {
   
     return (
-      <div className="demo-component">
-        Greeting
-      </div>
+      <>
+        { console.log(Date.now(), 'Greeting()') }
+        <div className="demo-component">
+          <h3>Greeting</h3>
+          <p>
+            "Static" component
+          </p>
+        </div>
+      </>
     );
   }
 
