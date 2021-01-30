@@ -8,12 +8,15 @@ const actions = {
     UPDATE_DATA: 'UPDATE_DATA'
   }
 
-const ConfigContext = React.createContext({ 
+const DemoContext = React.createContext({ 
     columnDefs: [],
     fontHeight: 12,
+
+    data: [],
+    counter: 0,
 })
 
-const configReducer = (state, action) => {
+const contextReducer = (state, action) => {
     switch (action.type) {
       case actions.UPDATE_COLUMNS: {
         return {
@@ -27,33 +30,21 @@ const configReducer = (state, action) => {
           fontHeight: action.payload,
         };
       }
+      case actions.INCREMENT_COUNTER: {
+        return {
+            ...state,
+            counter: state.counter + 1,
+        };
+      }
+      case actions.UPDATE_DATA: {
+        return {
+          ...state,
+          data: action.payload,
+        };
+      }
       default:
         return state;
     }
   }
   
-const DataContext = React.createContext({ 
-    data: [],
-    counter: 0,
-})
-
-const dataReducer = (state, action) => {
-    switch (action.type) {
-        case actions.INCREMENT_COUNTER: {
-        return {
-            ...state,
-            counter: state.counter + 1,
-        };
-        }
-        case actions.UPDATE_DATA: {
-        return {
-            ...state,
-            data: action.payload,
-        };
-        }
-        default:
-        return state;
-    }
-}
-
-export { actions, ConfigContext, configReducer, DataContext, dataReducer }
+export { actions, contextReducer, DemoContext }

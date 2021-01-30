@@ -1,22 +1,21 @@
 import React, { useContext } from 'react'
 
-import { ConfigContext, DataContext } from '../context/DemoContexts'
+import { DemoContext } from '../context/DemoContexts'
 
 const Status = (props) => {
-  const [configContext, dispatchConfig] = useContext(ConfigContext);
-  const [dataContext, dispatchData] = useContext(DataContext);
+  const [{ counter, columnDefs, data, fontHeight}] = useContext(DemoContext);
     
   return (
     <>
       { console.log(Date.now(), 'Status()') }
-      <div className="demo-component" style={{ fontSize: configContext.fontHeight }}>
+      <div className="demo-component" style={{ fontSize: fontHeight }}>
         <h3>Status</h3>
-        <div>Clicks: {dataContext.counter}</div>
+        <div>Clicks: {counter}</div>
         <hr></hr>
-        <div>Columns: {JSON.stringify(configContext.columnDefs)}</div>
-        <div>Data: {JSON.stringify(dataContext.data)}</div>
-        <div>Counter: {dataContext.counter}</div>
-        <div>Font Height: {configContext.fontHeight}</div>
+        <div>Columns: {JSON.stringify(columnDefs)}</div>
+        <div>Data: {JSON.stringify(data)}</div>
+        <div>Counter: {counter}</div>
+        <div>Font Height: {fontHeight}</div>
       </div>
     </>
   );
