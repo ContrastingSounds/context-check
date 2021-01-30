@@ -5,6 +5,7 @@ import './App.css';
 import Greeting from './components/Greeting'
 import Status from './components/Status'
 import InteractiveWidget from './components/InteractiveWidget'
+import DataTable from './components/DataTable'
 import Configurator from './components/Configurator'
 
 
@@ -16,6 +17,7 @@ function App() {
         <Greeting />
         <Status />
         <InteractiveWidget />
+        <DataTable />
         <Configurator />
     </div>
   );
