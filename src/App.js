@@ -48,7 +48,7 @@ function App() {
       <div className="App">
         <Greeting /> 
         <Status />
-        <InteractiveWidget />
+        <InteractiveWidget value={context.counter} updater={context.incrementCounter} />
         <DataTable />
         <Configurator />
       </div>
