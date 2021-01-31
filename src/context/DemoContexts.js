@@ -24,24 +24,28 @@ const contextReducer = (state, action) => {
           columnDefs: action.payload,
         };
       }
+
       case actions.UPDATE_FONT: {
         return {
           ...state,
           fontHeight: action.payload,
         };
       }
+      
       case actions.INCREMENT_COUNTER: {
         return {
             ...state,
             counter: state.counter + 1,
         };
       }
+
       case actions.UPDATE_DATA: {
         return {
           ...state,
           data: action.payload,
         };
       }
+
       default:
         return state;
     }

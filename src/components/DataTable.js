@@ -10,19 +10,21 @@ const DataTable = (props) => {
   const [{ columnDefs, data }] = useContext(DemoContext)
 
   return useMemo(() => {
-    return <>
-      { console.log(Date.now(), 'DataTable()') }
-      <div className="demo-component">
-        <h3>DataTable</h3>
-        <div className="ag-theme-alpine" style={{ height: 135, width: 600 }}>
-          <AgGridReact 
-            columnDefs={columnDefs}
-            rowData={data}
-          />
-        </div>
+    return (
+      <>
+        { console.log(Date.now(), 'DataTable()') }
+        <div className="demo-component">
+          <h3>DataTable</h3>
+          <div className="ag-theme-alpine" style={{ height: 135, width: 600 }}>
+            <AgGridReact 
+              columnDefs={columnDefs}
+              rowData={data}
+            />
+          </div>
         </div>
       </>
-    }, [columnDefs, data])
-  }
+    )
+  }, [columnDefs, data])
+}
 
 export default DataTable

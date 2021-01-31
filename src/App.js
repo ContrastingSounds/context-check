@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 
 import './App.css';
 
@@ -27,6 +27,10 @@ const initialState = {
 
 function App() {
   const [context, dispatch] = useReducer(contextReducer, initialState)
+
+  useEffect(() => {
+    console.log('App().useEffect() context change')
+  }, [context])
 
   return (
     <DemoContext.Provider value={ [context, dispatch] }>
